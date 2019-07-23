@@ -312,8 +312,11 @@ class ImageDataGenerator:
         paths = os.listdir(data_dir)
         # Read images
         imgs = np.ndarray([len(paths), img_size, img_size, 3])
-        for i in range(len(paths)):
-            img = cv2.imread(os.path.join(data_dir, paths[i]))
+        #for i in range(len(paths)):
+        for i, path in enumerate(paths):
+            img_path = os.path.join(data_dir, path)
+            img = cv2.imread(img_path)
+            #img = cv2.imread(os.path.join(data_dir, paths[i]))
             img = img[:, :, [2, 1, 0]]
             # rescale image
             img = cv2.resize(img, (img_size, img_size))
